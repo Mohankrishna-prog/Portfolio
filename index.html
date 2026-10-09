@@ -208,10 +208,46 @@
       transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
       box-shadow: 0 1px 4px rgba(0,0,0,0.06);
       text-decoration: none;
-      display: block;
+      display: flex;
+      flex-direction: column;
       color: inherit;
-      cursor: pointer;
       position: relative;
+    }
+    .cert-card:hover {
+      box-shadow: 0 8px 28px rgba(0,122,255,0.14);
+      transform: translateY(-3px);
+      border-color: rgba(0,122,255,0.3);
+    }
+    .cert-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: auto;
+      padding-top: 0.9rem;
+    }
+    .cert-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.42rem 0.6rem;
+      border-radius: 8px;
+      font-size: 0.73rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.18s, transform 0.15s;
+      border: 1px solid transparent;
+    }
+    .cert-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .cert-btn-pdf {
+      background: rgba(0,122,255,0.08);
+      border-color: rgba(0,122,255,0.25);
+      color: var(--accent);
+    }
+    .cert-btn-li {
+      background: rgba(0,119,181,0.08);
+      border-color: rgba(0,119,181,0.25);
+      color: #0077b5;
     }
     .cert-card:hover {
       box-shadow: 0 8px 28px rgba(0,122,255,0.14);
@@ -464,89 +500,109 @@
   <div class="cert-grid">
 
     <!-- Cisco — CCNA Switching Routing Wireless -->
-    <a class="cert-card" href="certificates/cert-ccna-srwe.pdf" target="_blank" rel="noopener noreferrer">
-      <span class="li-hint">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-        Open PDF
-      </span>
+    <div class="cert-card">
       <img src="certificates/badge-ccna-srwe.png" alt="CCNA SRWE Badge" class="cert-preview-img" onerror="this.style.display='none'"/>
       <div class="cert-issuer issuer-cisco">Cisco Networking Academy</div>
       <div class="cert-name">CCNA: Switching, Routing &amp; Wireless Essentials</div>
       <div class="cert-date">Completed: Aug 20, 2026</div>
       <span class="cert-badge">Verified</span>
-    </a>
+      <div class="cert-actions">
+        <a href="certificates/cert-ccna-srwe.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-pdf">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg> View PDF
+        </a>
+        <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-li">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
 
     <!-- Cisco — CCNA Intro to Networks -->
-    <a class="cert-card" href="certificates/cert-ccna-itn.pdf" target="_blank" rel="noopener noreferrer">
-      <span class="li-hint">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-        Open PDF
-      </span>
+    <div class="cert-card">
       <img src="certificates/badge-ccna-itn.png" alt="CCNA ITN Badge" class="cert-preview-img" onerror="this.style.display='none'"/>
       <div class="cert-issuer issuer-cisco">Cisco Networking Academy</div>
       <div class="cert-name">CCNA: Introduction to Networks</div>
       <div class="cert-date">Cisco Networking Academy</div>
       <span class="cert-badge">Verified</span>
-    </a>
+      <div class="cert-actions">
+        <a href="certificates/cert-ccna-itn.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-pdf">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg> View PDF
+        </a>
+        <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-li">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
 
     <!-- Cisco — CCNA Enterprise -->
-    <a class="cert-card" href="certificates/cert-ccna-ensa.pdf" target="_blank" rel="noopener noreferrer">
-      <span class="li-hint">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-        Open PDF
-      </span>
+    <div class="cert-card">
       <img src="certificates/badge-ccna-ensa.png" alt="CCNA ENSA Badge" class="cert-preview-img" onerror="this.style.display='none'"/>
       <div class="cert-issuer issuer-cisco">Cisco Networking Academy</div>
       <div class="cert-name">CCNA: Enterprise Networking, Security &amp; Automation</div>
       <div class="cert-date">Cisco Networking Academy</div>
       <span class="cert-badge">Verified</span>
-    </a>
+      <div class="cert-actions">
+        <a href="certificates/cert-ccna-ensa.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-pdf">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg> View PDF
+        </a>
+        <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-li">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
 
     <!-- Cisco — Intro to Cybersecurity -->
-    <a class="cert-card" href="certificates/cert-cisco-cybersec.pdf" target="_blank" rel="noopener noreferrer">
-      <span class="li-hint">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-        Open PDF
-      </span>
+    <div class="cert-card">
       <img src="certificates/badge-cybersec.png" alt="Cybersecurity Badge" class="cert-preview-img" onerror="this.style.display='none'"/>
       <div class="cert-issuer issuer-cisco">Cisco Networking Academy</div>
       <div class="cert-name">Introduction to Cybersecurity</div>
       <div class="cert-date">Completed: Aug 24, 2026</div>
       <span class="cert-badge">Verified</span>
-    </a>
+      <div class="cert-actions">
+        <a href="certificates/cert-cisco-cybersec.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-pdf">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg> View PDF
+        </a>
+        <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-li">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
 
     <!-- Cisco — Intro to IoT -->
-    <a class="cert-card" href="certificates/cert-cisco-iot.pdf" target="_blank" rel="noopener noreferrer">
-      <span class="li-hint">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-        Open PDF
-      </span>
+    <div class="cert-card">
       <img src="certificates/badge-iot.png" alt="IoT Badge" class="cert-preview-img" onerror="this.style.display='none'"/>
       <div class="cert-issuer issuer-cisco">Cisco Networking Academy</div>
       <div class="cert-name">Introduction to Internet of Things</div>
       <div class="cert-date">Completed: Aug 18, 2026</div>
       <span class="cert-badge">Verified</span>
-    </a>
+      <div class="cert-actions">
+        <a href="certificates/cert-cisco-iot.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-pdf">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg> View PDF
+        </a>
+        <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-li">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
 
-    <!-- Cisco — IoT & Digital Transformation (same IoT cert) -->
-    <a class="cert-card" href="certificates/cert-cisco-iot.pdf" target="_blank" rel="noopener noreferrer">
-      <span class="li-hint">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-        Open PDF
-      </span>
+    <!-- Cisco — IoT & Digital Transformation -->
+    <div class="cert-card">
       <img src="certificates/badge-iot.png" alt="IoT Badge" class="cert-preview-img" onerror="this.style.display='none'"/>
       <div class="cert-issuer issuer-cisco">Cisco Networking Academy</div>
       <div class="cert-name">Introduction to IoT and Digital Transformation</div>
       <div class="cert-date">Completed: Aug 18, 2026</div>
       <span class="cert-badge">Verified</span>
-    </a>
+      <div class="cert-actions">
+        <a href="certificates/cert-cisco-iot.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-pdf">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg> View PDF
+        </a>
+        <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-li">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
 
     <!-- VOIS — Ethical Hacking -->
-    <a class="cert-card" href="certificates/cert-ethical-hacking.pdf" target="_blank" rel="noopener noreferrer">
-      <span class="li-hint">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-        Open PDF
-      </span>
+    <div class="cert-card">
       <div class="cert-preview-placeholder badge-vois">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
       </div>
@@ -554,14 +610,18 @@
       <div class="cert-name">Ethical Hacking</div>
       <div class="cert-date">Issued: Aug 16, 2026 · ID: VFLMS26_167433</div>
       <span class="cert-badge">Completion</span>
-    </a>
+      <div class="cert-actions">
+        <a href="certificates/cert-ethical-hacking.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-pdf">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg> View PDF
+        </a>
+        <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-li">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
 
     <!-- VOIS — Intro to Cyber Security -->
-    <a class="cert-card" href="certificates/cert-intro-cybersec.pdf" target="_blank" rel="noopener noreferrer">
-      <span class="li-hint">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-        Open PDF
-      </span>
+    <div class="cert-card">
       <div class="cert-preview-placeholder badge-vois">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
       </div>
@@ -569,14 +629,18 @@
       <div class="cert-name">Introduction to Cyber Security</div>
       <div class="cert-date">Issued: Aug 16, 2026 · ID: VFLMS26_167433</div>
       <span class="cert-badge">Completion</span>
-    </a>
+      <div class="cert-actions">
+        <a href="certificates/cert-intro-cybersec.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-pdf">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg> View PDF
+        </a>
+        <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-li">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
 
     <!-- VOIS — Kali Linux -->
-    <a class="cert-card" href="certificates/cert-kali.pdf" target="_blank" rel="noopener noreferrer">
-      <span class="li-hint">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-        Open PDF
-      </span>
+    <div class="cert-card">
       <div class="cert-preview-placeholder badge-vois">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
       </div>
@@ -584,14 +648,18 @@
       <div class="cert-name">Kali Linux Fundamentals</div>
       <div class="cert-date">Issued: Aug 14, 2026 · ID: VFLMS26_167433</div>
       <span class="cert-badge">Completion</span>
-    </a>
+      <div class="cert-actions">
+        <a href="certificates/cert-kali.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-pdf">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg> View PDF
+        </a>
+        <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-li">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
 
     <!-- VOIS — Phishing Attacks -->
-    <a class="cert-card" href="certificates/cert-phishing.pdf" target="_blank" rel="noopener noreferrer">
-      <span class="li-hint">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-        Open PDF
-      </span>
+    <div class="cert-card">
       <div class="cert-preview-placeholder badge-vois">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
       </div>
@@ -599,14 +667,18 @@
       <div class="cert-name">Phishing Attacks</div>
       <div class="cert-date">Issued: Aug 14, 2026 · ID: VFLMS26_167433</div>
       <span class="cert-badge">Completion</span>
-    </a>
+      <div class="cert-actions">
+        <a href="certificates/cert-phishing.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-pdf">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg> View PDF
+        </a>
+        <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-li">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
 
     <!-- VOIS — Wireshark -->
-    <a class="cert-card" href="certificates/cert-wireshark.pdf" target="_blank" rel="noopener noreferrer">
-      <span class="li-hint">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-        Open PDF
-      </span>
+    <div class="cert-card">
       <div class="cert-preview-placeholder badge-vois">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>
       </div>
@@ -614,14 +686,18 @@
       <div class="cert-name">Wireshark for Network Monitoring</div>
       <div class="cert-date">Issued: Aug 15, 2026 · ID: VFLMS26_167433</div>
       <span class="cert-badge">Completion</span>
-    </a>
+      <div class="cert-actions">
+        <a href="certificates/cert-wireshark.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-pdf">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg> View PDF
+        </a>
+        <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-li">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
 
     <!-- Nasscom -->
-    <a class="cert-card" href="certificates/cert-nasscom.pdf" target="_blank" rel="noopener noreferrer">
-      <span class="li-hint">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-        Open PDF
-      </span>
+    <div class="cert-card">
       <div class="cert-preview-placeholder badge-nasscom">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
       </div>
@@ -629,20 +705,32 @@
       <div class="cert-name">FSP Acquiring Data (SCORM - 59022)</div>
       <div class="cert-date">Issued: Oct 7, 2025</div>
       <span class="cert-badge">Completion</span>
-    </a>
+      <div class="cert-actions">
+        <a href="certificates/cert-nasscom.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-pdf">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg> View PDF
+        </a>
+        <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-li">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
 
     <!-- IBM -->
-    <a class="cert-card" href="certificates/cert-ibm-ai.pdf" target="_blank" rel="noopener noreferrer">
-      <span class="li-hint">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-        Open PDF
-      </span>
+    <div class="cert-card">
       <img src="certificates/badge-ibm-ai.png" alt="IBM AI Badge" class="cert-preview-img" onerror="this.style.display='none'"/>
       <div class="cert-issuer issuer-ibm">IBM SkillsBuild</div>
       <div class="cert-name">Getting Started with Artificial Intelligence</div>
       <div class="cert-date">IBM SkillsBuild</div>
       <span class="cert-badge">Completion</span>
-    </a>
+      <div class="cert-actions">
+        <a href="certificates/cert-ibm-ai.pdf" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-pdf">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg> View PDF
+        </a>
+        <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer" class="cert-btn cert-btn-li">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
 
   </div>
 </section>
