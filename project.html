@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Sports Match Predictor Agent | Mohan Krishna Mudunuri</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f2f2f7;
+      --surface: #ffffff;
+      --surface2: #f9f9fb;
+      --border: rgba(60,60,67,0.12);
+      --text: #1c1c1e;
+      --muted: #6e6e73;
+      --accent: #007aff;
+      --accent2: #34c759;
+      --purple: #af52de;
+      --yellow: #ff9500;
+      --red: #ff3b30;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV — Apple frosted glass */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(242,242,247,0.82);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 52px;
+    }
+    nav .logo { font-weight: 700; font-size: 1rem; color: var(--accent); letter-spacing: -0.3px; }
+    nav .back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: var(--accent); text-decoration: none; font-size: 0.875rem;
+      font-weight: 500; transition: opacity 0.2s;
+    }
+    nav .back:hover { opacity: 0.7; }
+
+    /* HERO */
+    .hero {
+      padding: 4rem 2rem 3rem;
+      max-width: 900px; margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #ffffff 0%, #f2f2f7 100%);
+    }
+    .breadcrumb {
+      font-size: 0.78rem; color: var(--muted); margin-bottom: 1.2rem;
+    }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .hero-tag {
+      display: inline-block; padding: 0.25rem 0.75rem;
+      background: rgba(52,199,89,0.1); border: 1px solid rgba(52,199,89,0.25);
+      border-radius: 980px; font-size: 0.72rem; font-weight: 700;
+      color: var(--accent2); letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.15; margin-bottom: 1rem;
+      letter-spacing: -0.6px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero-desc {
+      color: var(--muted); font-size: 1rem; max-width: 650px;
+      line-height: 1.7; margin-bottom: 1.8rem;
+    }
+    .tech-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.8rem; }
+    .tech-tag {
+      display: inline-block; padding: 0.22rem 0.75rem;
+      background: rgba(175,82,222,0.08); border: 1px solid rgba(175,82,222,0.2);
+      border-radius: 980px; font-size: 0.74rem; font-weight: 600; color: var(--purple);
+    }
+    .tech-tag.blue {
+      background: rgba(0,122,255,0.08); border-color: rgba(0,122,255,0.2); color: var(--accent);
+    }
+    .tech-tag.green {
+      background: rgba(52,199,89,0.08); border-color: rgba(52,199,89,0.2); color: var(--accent2);
+    }
+
+    /* CONTENT */
+    .content { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+
+    /* STAT CARDS */
+    .stat-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem; margin-bottom: 3rem;
+    }
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.2rem 1.4rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .stat-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem; }
+    .stat-value { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+
+    /* PIPELINE */
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem; margin-bottom: 3rem;
+    }
+    .pipeline-step {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.2rem 1.4rem;
+      position: relative; box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .pipeline-step:hover { box-shadow: 0 4px 16px rgba(0,122,255,0.1); transform: translateY(-2px); }
+    .step-num {
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 1px;
+      color: var(--accent); margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .step-name { font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; letter-spacing: -0.2px; }
+    .step-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    /* SECTION */
+    .sec { margin-bottom: 3rem; }
+    .sec-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem;
+    }
+    .sec-title {
+      font-size: 1.3rem; font-weight: 800; margin-bottom: 0.3rem; letter-spacing: -0.3px;
+    }
+    .divider {
+      width: 40px; height: 3px; background: var(--accent);
+      border-radius: 2px; margin-bottom: 1.2rem;
+    }
+
+    /* FILE TREE */
+    .file-tree {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.4rem 1.6rem;
+      font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+      font-size: 0.85rem; line-height: 2;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .ft-folder { color: var(--yellow); font-weight: 600; }
+    .ft-file   { color: var(--text); }
+    .ft-file.py  { color: #0071e3; }
+    .ft-file.env { color: var(--accent2); }
+    .ft-file.txt { color: var(--muted); }
+    .ft-file.ps1 { color: var(--purple); }
+    .ft-file.html{ color: #ff6b35; }
+    .ft-indent   { padding-left: 1.4rem; }
+    .ft-indent2  { padding-left: 2.8rem; }
+
+    /* CODE BLOCK */
+    .code-block {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden; margin-bottom: 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .code-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.65rem 1rem;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+    }
+    .code-filename {
+      font-family: "Cascadia Code", "Fira Code", monospace;
+      font-size: 0.78rem; color: var(--muted);
+    }
+    .code-lang {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--accent); background: rgba(0,122,255,0.08);
+      padding: 0.15rem 0.5rem; border-radius: 6px;
+    }
+    pre {
+      margin: 0; padding: 1.2rem 1.4rem;
+      overflow-x: auto; font-size: 0.82rem; line-height: 1.65;
+      font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+      color: #1c1c1e;
+      white-space: pre;
+      background: #f9f9fb;
+    }
+    .kw  { color: #ad3da4; }
+    .fn  { color: #0071e3; }
+    .st  { color: #c41a16; }
+    .cm  { color: #6e6e73; font-style: italic; }
+    .nm  { color: #0071e3; }
+    .dc  { color: #34c759; }
+
+    /* API ENDPOINTS */
+    .endpoint-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .endpoint {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 0.9rem 1.2rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .method {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.5px;
+      padding: 0.2rem 0.6rem; border-radius: 6px; flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .method.get  { background: rgba(52,199,89,0.12);  color: #1d8348; }
+    .method.post { background: rgba(0,122,255,0.1); color: var(--accent); }
+    .ep-path { font-family: monospace; font-size: 0.88rem; font-weight: 700; color: var(--text); }
+    .ep-desc { font-size: 0.82rem; color: var(--muted); margin-top: 0.15rem; }
+
+    /* HOW TO RUN */
+    .run-steps { display: flex; flex-direction: column; gap: 0.75rem; }
+    .run-step {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .run-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(0,122,255,0.1); border: 1px solid rgba(0,122,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; font-weight: 800; color: var(--accent);
+      flex-shrink: 0;
+    }
+    .run-text { font-size: 0.88rem; color: var(--text); line-height: 1.5; }
+    .run-text code {
+      background: rgba(0,122,255,0.08); padding: 0.1rem 0.4rem;
+      border-radius: 4px; font-family: monospace; font-size: 0.82rem; color: var(--accent);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: 0.82rem;
+      background: var(--surface);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.5rem; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">MKM</div>
+  <a href="index.html" class="back">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"/></svg>
+    Back to Portfolio
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="breadcrumb">
+    <a href="index.html">Portfolio</a> &rsaquo; Projects &rsaquo; AI Sports Match Predictor Agent
+  </div>
+  <div class="hero-tag">Featured Project</div>
+  <h1>The AI <span>Sports Match</span> Predictor Agent</h1>
+  <p class="hero-desc">
+    A FastAPI-powered backend that orchestrates a 4-agent AI pipeline to analyse match history,
+    decode opponent strategy, generate tactical recommendations, and explain coaching insights —
+    all served through a live dashboard. Built using IBM Bob with the Groq LLM API.
+  </p>
+  <div class="tech-row">
+    <span class="tech-tag blue">IBM Bob</span>
+    <span class="tech-tag blue">FastAPI</span>
+    <span class="tech-tag blue">Python</span>
+    <span class="tech-tag green">Groq API</span>
+    <span class="tech-tag green">Qwen 3.8-27B</span>
+    <span class="tech-tag green">Llama Prompt Guard</span>
+    <span class="tech-tag">RAG</span>
+    <span class="tech-tag">Scikit-learn</span>
+    <span class="tech-tag">Uvicorn</span>
+    <span class="tech-tag">Pydantic</span>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- STATS -->
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">AI Agents</div>
+      <div class="stat-value">4</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">API Endpoints</div>
+      <div class="stat-value">5</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">LLM Backend</div>
+      <div class="stat-value" style="font-size:1rem;padding-top:4px;">Groq</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Framework</div>
+      <div class="stat-value" style="font-size:1rem;padding-top:4px;">FastAPI</div>
+    </div>
+  </div>
+
+  <!-- AGENT PIPELINE -->
+  <div class="sec">
+    <div class="sec-label">Architecture</div>
+    <div class="divider"></div>
+    <h2 class="sec-title">4-Agent Pipeline</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.4rem;">Each agent receives the output of the previous one, building context progressively.</p>
+    <div class="pipeline">
+      <div class="pipeline-step">
+        <div class="step-num">Agent 1</div>
+        <div class="step-name">Match Analysis Agent</div>
+        <div class="step-desc">Analyses historical match data for patterns, win/loss trends and performance stats against a given opponent.</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">Agent 2</div>
+        <div class="step-name">Opponent Strategy Agent</div>
+        <div class="step-desc">Decodes the opponent's tactical approach — formations observed, key weaknesses, and playing style tendencies.</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">Agent 3</div>
+        <div class="step-name">Strategy Recommendation Agent</div>
+        <div class="step-desc">Uses Agent 1 &amp; 2 outputs to suggest optimal formations, set-piece tactics, and counter-strategies.</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">Agent 4</div>
+        <div class="step-name">Insight Explanation Agent</div>
+        <div class="step-desc">Converts technical recommendations into plain coaching language that managers and players can act on.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILE STRUCTURE -->
+  <div class="sec">
+    <div class="sec-label">Codebase</div>
+    <div class="divider"></div>
+    <h2 class="sec-title">Project File Structure</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.2rem;">All core logic is modularised — each agent lives in its own file inside the <code style="color:var(--accent);background:rgba(88,166,255,0.1);padding:0.1rem 0.4rem;border-radius:4px;font-family:monospace;">agents/</code> directory.</p>
+    <div class="file-tree">
+      <div><span class="ft-folder">&#128193; IBM Project/</span></div>
+      <div class="ft-indent"><span class="ft-file py">&#128196; main.py</span> &nbsp;<span style="color:var(--muted);font-size:0.78rem">— FastAPI app entry point &amp; pipeline orchestrator</span></div>
+      <div class="ft-indent"><span class="ft-file txt">&#128196; requirements.txt</span> &nbsp;<span style="color:var(--muted);font-size:0.78rem">— Python dependencies</span></div>
+      <div class="ft-indent"><span class="ft-file env">&#128196; config.env</span> &nbsp;<span style="color:var(--muted);font-size:0.78rem">— API keys &amp; model config</span></div>
+      <div class="ft-indent"><span class="ft-file ps1">&#128196; start.ps1</span> &nbsp;<span style="color:var(--muted);font-size:0.78rem">— PowerShell startup script</span></div>
+      <div class="ft-indent"><span class="ft-folder">&#128193; agents/</span></div>
+      <div class="ft-indent2"><span class="ft-file py">&#128196; rag.py</span> &nbsp;<span style="color:var(--muted);font-size:0.78rem">— RAG retriever (shared across all agents)</span></div>
+      <div class="ft-indent2"><span class="ft-file py">&#128196; match_analysis_agent.py</span></div>
+      <div class="ft-indent2"><span class="ft-file py">&#128196; opponent_strategy_agent.py</span></div>
+      <div class="ft-indent2"><span class="ft-file py">&#128196; strategy_recommendation_agent.py</span></div>
+      <div class="ft-indent2"><span class="ft-file py">&#128196; insight_explanation_agent.py</span></div>
+      <div class="ft-indent"><span class="ft-folder">&#128193; frontend/</span></div>
+      <div class="ft-indent2"><span class="ft-file html">&#128196; index.html</span> &nbsp;<span style="color:var(--muted);font-size:0.78rem">— Live dashboard UI</span></div>
+    </div>
+  </div>
+
+  <!-- MAIN.PY CODE -->
+  <div class="sec">
+    <div class="sec-label">Source Code</div>
+    <div class="divider"></div>
+    <h2 class="sec-title">main.py — Pipeline Orchestrator</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.2rem;">The FastAPI application wires all 4 agents together, computes dashboard statistics, and exposes the REST API.</p>
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-filename">main.py</span>
+        <span class="code-lang">Python</span>
+      </div>
+<pre><span class="cm">"""
+FastAPI backend — AI-powered Game Strategy Advisor
+Orchestrates the 4-agent pipeline and serves the dashboard.
+"""</span>
+<span class="kw">import</span> os
+<span class="kw">from</span> dotenv <span class="kw">import</span> load_dotenv
+
+load_dotenv(override=<span class="nm">False</span>)
+load_dotenv(<span class="st">"config.env"</span>, override=<span class="nm">False</span>)
+
+<span class="kw">from</span> fastapi <span class="kw">import</span> FastAPI, HTTPException
+<span class="kw">from</span> fastapi.middleware.cors <span class="kw">import</span> CORSMiddleware
+<span class="kw">from</span> fastapi.responses <span class="kw">import</span> FileResponse, HTMLResponse
+<span class="kw">from</span> pydantic <span class="kw">import</span> BaseModel
+<span class="kw">from</span> typing <span class="kw">import</span> Optional
+
+<span class="kw">from</span> agents.rag <span class="kw">import</span> RAGRetriever
+<span class="kw">import</span> agents.match_analysis_agent <span class="kw">as</span> match_agent
+<span class="kw">import</span> agents.opponent_strategy_agent <span class="kw">as</span> opponent_agent
+<span class="kw">import</span> agents.strategy_recommendation_agent <span class="kw">as</span> strategy_agent
+<span class="kw">import</span> agents.insight_explanation_agent <span class="kw">as</span> insight_agent
+
+app = <span class="fn">FastAPI</span>(title=<span class="st">"Game Strategy Advisor"</span>, version=<span class="st">"1.0.0"</span>)
+
+app.<span class="fn">add_middleware</span>(
+    CORSMiddleware,
+    allow_origins=[<span class="st">"*"</span>],
+    allow_methods=[<span class="st">"*"</span>],
+    allow_headers=[<span class="st">"*"</span>],
+)
+
+retriever = <span class="fn">RAGRetriever</span>()  <span class="cm"># Single shared instance, loaded once on startup</span>
+
+<span class="dc">@app.post("/api/analyze")</span>
+<span class="kw">def</span> <span class="fn">analyze</span>(req: AnalysisRequest):
+    <span class="cm">"""Main pipeline: run all 4 agents sequentially."""</span>
+    ma_result = match_agent.<span class="fn">run</span>(opponent, retriever)
+    os_result = opponent_agent.<span class="fn">run</span>(opponent, retriever)
+    sr_result = strategy_agent.<span class="fn">run</span>(
+        opponent=opponent,
+        match_analysis=ma_result[<span class="st">"analysis"</span>],
+        opponent_analysis=os_result[<span class="st">"analysis"</span>],
+        key_weaknesses=os_result[<span class="st">"key_weaknesses"</span>],
+        formations_seen=os_result[<span class="st">"formations_observed"</span>],
+    )
+    ie_result = insight_agent.<span class="fn">run</span>(
+        opponent=opponent,
+        recommendation=sr_result[<span class="st">"recommendation"</span>],
+        opponent_weaknesses=os_result[<span class="st">"key_weaknesses"</span>],
+    )
+    <span class="kw">return</span> {
+        <span class="st">"match_analysis"</span>:        ma_result,
+        <span class="st">"opponent_strategy"</span>:      os_result,
+        <span class="st">"strategy_recommendation"</span>: sr_result,
+        <span class="st">"coaching_insights"</span>:       ie_result,
+        <span class="st">"dashboard_data"</span>:          dashboard_data,
+    }</pre>
+    </div>
+  </div>
+
+  <!-- CONFIG -->
+  <div class="sec">
+    <h2 class="sec-title">config.env — Model Configuration</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.2rem;">Uses two Groq models — a lightweight prompt guard for safety and a powerful chat model for analysis.</p>
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-filename">config.env</span>
+        <span class="code-lang">ENV</span>
+      </div>
+<pre><span class="cm"># Groq API credentials</span>
+<span class="nm">GROQ_API_KEY</span>=your_groq_api_key_here
+
+<span class="cm"># Safety guard model (lightweight prompt injection filter)</span>
+<span class="nm">GROQ_GUARD_MODEL</span>=<span class="st">meta-llama/llama-prompt-guard-2-22m</span>
+
+<span class="cm"># Primary chat / reasoning model</span>
+<span class="nm">GROQ_CHAT_MODEL</span>=<span class="st">qwen/qwen3.8-27b</span></pre>
+    </div>
+  </div>
+
+  <!-- REQUIREMENTS -->
+  <div class="sec">
+    <h2 class="sec-title">requirements.txt — Dependencies</h2>
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-filename">requirements.txt</span>
+        <span class="code-lang">TXT</span>
+      </div>
+<pre>fastapi==0.111.0
+uvicorn==0.29.0
+requests==2.31.0
+numpy&gt;=1.26.4
+scikit-learn&gt;=1.5.0
+python-dotenv==1.0.1
+pydantic&gt;=2.7.1</pre>
+    </div>
+  </div>
+
+  <!-- STARTUP SCRIPT -->
+  <div class="sec">
+    <h2 class="sec-title">start.ps1 — Startup Script</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.2rem;">One-command launch — creates the virtual environment, installs dependencies, and starts the server.</p>
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-filename">start.ps1</span>
+        <span class="code-lang">PowerShell</span>
+      </div>
+<pre><span class="cm"># AI Game Strategy Advisor — Startup Script</span>
+<span class="fn">Write-Host</span> <span class="st">"=== FC Dynamo AI Strategy Advisor ==="</span> -ForegroundColor Cyan
+
+<span class="cm"># Create virtual environment if missing</span>
+<span class="kw">if</span> (-not (<span class="fn">Test-Path</span> <span class="st">".venv"</span>)) {
+    uv venv .venv --python 3.14
+}
+
+<span class="cm"># Install / sync dependencies</span>
+uv pip install -r requirements.txt --python .venv\Scripts\python.exe
+
+<span class="cm"># Load API key from config.env if .env is not present</span>
+<span class="kw">if</span> (-not (<span class="fn">Test-Path</span> <span class="st">".env"</span>)) {
+    <span class="kw">if</span> (<span class="fn">Test-Path</span> <span class="st">"config.env"</span>) {
+        <span class="fn">Copy-Item</span> config.env .env -Force
+    }
+}
+
+<span class="cm"># Start FastAPI server</span>
+&amp; <span class="st">".venv\Scripts\python.exe"</span> -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload</pre>
+    </div>
+  </div>
+
+  <!-- API ENDPOINTS -->
+  <div class="sec">
+    <div class="sec-label">API</div>
+    <div class="divider"></div>
+    <h2 class="sec-title">REST API Endpoints</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.2rem;">All endpoints are served at <code style="color:var(--accent);background:rgba(88,166,255,0.1);padding:0.1rem 0.4rem;border-radius:4px;font-family:monospace;">http://localhost:8000</code></p>
+    <div class="endpoint-list">
+      <div class="endpoint">
+        <span class="method get">GET</span>
+        <div>
+          <div class="ep-path">/</div>
+          <div class="ep-desc">Serves the live HTML dashboard UI</div>
+        </div>
+      </div>
+      <div class="endpoint">
+        <span class="method get">GET</span>
+        <div>
+          <div class="ep-path">/api/opponents</div>
+          <div class="ep-desc">Returns list of unique opponents from match history</div>
+        </div>
+      </div>
+      <div class="endpoint">
+        <span class="method get">GET</span>
+        <div>
+          <div class="ep-path">/api/matches</div>
+          <div class="ep-desc">Returns all historical match records for the dashboard table</div>
+        </div>
+      </div>
+      <div class="endpoint">
+        <span class="method post">POST</span>
+        <div>
+          <div class="ep-path">/api/analyze</div>
+          <div class="ep-desc">Triggers the full 4-agent pipeline. Body: <code style="color:var(--accent);font-family:monospace;">{ "opponent": "Team Name", "match_context": "..." }</code></div>
+        </div>
+      </div>
+      <div class="endpoint">
+        <span class="method get">GET</span>
+        <div>
+          <div class="ep-path">/api/health</div>
+          <div class="ep-desc">Returns server status and active model names</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW TO RUN -->
+  <div class="sec">
+    <div class="sec-label">Setup</div>
+    <div class="divider"></div>
+    <h2 class="sec-title">How to Run</h2>
+    <div class="run-steps">
+      <div class="run-step">
+        <div class="run-num">1</div>
+        <div class="run-text">Add your Groq API key to <code>config.env</code> — replace <code>your_groq_api_key_here</code> with your actual key from <a href="https://console.groq.com" target="_blank" rel="noopener" style="color:var(--accent);">console.groq.com</a></div>
+      </div>
+      <div class="run-step">
+        <div class="run-num">2</div>
+        <div class="run-text">Open PowerShell in the project directory and run <code>.\start.ps1</code> — it handles virtual environment creation and dependency installation automatically</div>
+      </div>
+      <div class="run-step">
+        <div class="run-num">3</div>
+        <div class="run-text">Open your browser at <code>http://localhost:8000</code> to access the live dashboard</div>
+      </div>
+      <div class="run-step">
+        <div class="run-num">4</div>
+        <div class="run-text">Select an opponent and click Analyze — the 4-agent pipeline runs and results populate the dashboard in real time</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    <a href="index.html">&#8592; Back to Portfolio</a> &nbsp;|&nbsp;
+    Built by Mudunuri Mohan Krishna &nbsp;|&nbsp;
+    <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </p>
+</footer>
+
+</body>
+</html>

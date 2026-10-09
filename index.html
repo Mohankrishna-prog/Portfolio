@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mudunuri Mohan Krishna | Portfolio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f2f2f7;
+      --surface: #ffffff;
+      --surface2: #f9f9fb;
+      --border: rgba(60,60,67,0.12);
+      --text: #1c1c1e;
+      --muted: #6e6e73;
+      --accent: #007aff;
+      --accent2: #34c759;
+      --accent3: #ff3b30;
+      --purple: #af52de;
+      --orange: #ff9500;
+      --teal: #5ac8fa;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV — Apple frosted glass */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(242,242,247,0.82);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--accent);
+      letter-spacing: -0.3px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+    nav .logo img {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.8rem;
+    }
+    nav ul a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #ffffff 0%, #f2f2f7 100%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(0,122,255,0.07) 0%, transparent 65%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero-avatar {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #007aff, #af52de);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem; font-weight: 700; color: #fff;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0,122,255,0.25);
+      overflow: hidden;
+      padding: 0;
+    }
+    .hero-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero .tagline {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2rem;
+      font-weight: 400;
+      line-height: 1.55;
+    }
+    .hero-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.65rem 1.5rem;
+      border-radius: 980px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.18s, transform 0.15s, box-shadow 0.18s;
+      cursor: pointer;
+      border: none;
+      letter-spacing: -0.1px;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 4px 16px rgba(0,122,255,0.3);
+    }
+    .btn-outline {
+      background: rgba(0,122,255,0.08);
+      color: var(--accent);
+      border: 1.5px solid rgba(0,122,255,0.25);
+    }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .section-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+      letter-spacing: -0.5px;
+    }
+    .section-sub {
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+      font-size: 0.95rem;
+    }
+    .divider {
+      width: 40px; height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
+    /* CERT GRID */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .cert-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      text-decoration: none;
+      display: block;
+      color: inherit;
+      cursor: pointer;
+      position: relative;
+    }
+    .cert-card:hover {
+      box-shadow: 0 8px 28px rgba(0,122,255,0.14);
+      transform: translateY(-3px);
+      border-color: rgba(0,122,255,0.3);
+    }
+    .cert-card .li-hint {
+      display: none;
+      position: absolute;
+      top: 0.8rem; right: 0.9rem;
+      font-size: 0.68rem; font-weight: 700;
+      color: var(--accent);
+      align-items: center; gap: 0.25rem;
+    }
+    .cert-card:hover .li-hint { display: inline-flex; }
+    .cert-preview-img {
+      width: 100%;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-bottom: 0.75rem;
+      background: #f2f2f7;
+      padding: 4px;
+      display: block;
+    }
+    .cert-preview-placeholder {
+      width: 100%;
+      height: 72px;
+      border-radius: 10px;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* inline SVG badge container */
+    .badge-icon {
+      width: 56px; height: 56px;
+      border-radius: 10px;
+      margin-bottom: 0.75rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .badge-cisco  { background: linear-gradient(145deg,#1da1f2,#005073); }
+    .badge-vois   { background: linear-gradient(145deg,#e60028,#8b0000); }
+    .badge-nasscom{ background: linear-gradient(145deg,#ff9500,#c96a00); }
+    .badge-ibm    { background: linear-gradient(145deg,#0f62fe,#002d9c); }
+    .badge-icon svg, .badge-icon span { color: #fff; }
+    .cert-issuer {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 0.4rem;
+    }
+    .issuer-cisco   { color: #1ba0e1; }
+    .issuer-vois    { color: #e60028; }
+    .issuer-nasscom { color: #ff9500; }
+    .issuer-ibm     { color: #007aff; }
+    .cert-name {
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+      line-height: 1.4;
+    }
+    .cert-date {
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+    .cert-badge {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.18rem 0.6rem;
+      background: rgba(0,122,255,0.08);
+      border: 1px solid rgba(0,122,255,0.2);
+      border-radius: 6px;
+      font-size: 0.68rem;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* PROJECT CARD */
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: box-shadow 0.2s, transform 0.15s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .project-card:hover {
+      box-shadow: 0 8px 32px rgba(52,199,89,0.12);
+      transform: translateY(-2px);
+    }
+    .project-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .project-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: rgba(52,199,89,0.1);
+      border: 1px solid rgba(52,199,89,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .project-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.3px;
+    }
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin-bottom: 1.2rem;
+    }
+    .tech-tag {
+      display: inline-block;
+      padding: 0.22rem 0.7rem;
+      background: rgba(175,82,222,0.08);
+      border: 1px solid rgba(175,82,222,0.2);
+      border-radius: 20px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--purple);
+      margin: 0.2rem 0.2rem 0 0;
+    }
+
+    /* CONTACT */
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .contact-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: box-shadow 0.2s, color 0.2s;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .contact-item:hover {
+      box-shadow: 0 4px 16px rgba(0,122,255,0.12);
+      color: var(--accent);
+    }
+    .contact-item svg { flex-shrink: 0; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.82rem;
+      background: var(--surface);
+    }
+
+    @media (max-width: 600px) {
+      nav ul { gap: 1rem; }
+      .hero h1 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#about" class="logo">
+        <img src="professional look.jpeg" alt="MKM" onerror="this.style.display='none';" />
+      </a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#badges">Badges</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="hero-avatar">
+    <img src="professional look.jpeg" alt="Mudunuri Mohan Krishna" onerror="this.style.display='none';this.parentElement.textContent='MK';" />
+  </div>
+  <h1>Mudunuri <span>Mohan Krishna</span></h1>
+  <p class="tagline">Cybersecurity enthusiast &amp; networking professional with a passion for AI-driven solutions and digital transformation.</p>
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem 2rem;margin:0.8rem 0 0.2rem;font-size:0.88rem;color:var(--muted);">
+    <span style="display:inline-flex;align-items:center;gap:0.4rem;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      <a href="mailto:mkmudunuri07@gmail.com" style="color:var(--muted);text-decoration:none;">mkmudunuri07@gmail.com</a>
+    </span>
+    <span style="display:inline-flex;align-items:center;gap:0.4rem;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      Vijayawada, Andhra Pradesh, India
+    </span>
+  </div>
+  <!-- College Details -->
+  <div style="display:inline-flex;align-items:center;gap:0.75rem;margin:1rem 0 0.4rem;padding:0.65rem 1.2rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;max-width:420px;width:100%;">
+    <div style="width:44px;height:44px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;">
+      <img src="vikas_college_of_engineering_and_technology_logo.jpg" alt="VCET Logo" style="width:100%;height:100%;object-fit:contain;" />
+    </div>
+    <div style="text-align:left;">
+      <div style="font-size:0.82rem;font-weight:700;color:var(--text);line-height:1.3;">Vikas College of Engineering and Technology</div>
+      <div style="font-size:0.78rem;color:var(--muted);margin-top:0.15rem;">B.Tech in Computer Science &nbsp;·&nbsp; 2024 – 2028</div>
+    </div>
+  </div>
+  <div class="hero-links">
+    <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      Connect on LinkedIn
+    </a>
+    <a href="https://github.com/Mohankrishna-prog" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      GitHub
+    </a>
+    <a href="#projects" class="btn btn-outline">View Projects</a>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Credentials</div>
+  <div class="divider"></div>
+  <h2 class="section-title">Certifications</h2>
+  <p class="section-sub">Industry-recognised credentials across networking, cybersecurity, IoT, and AI.</p>
+
+  <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.4rem;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="#007aff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    Click any certificate card to open the PDF
+  </p>
+
+  <div class="cert-grid">
+
+    <!-- Cisco — CCNA Switching Routing Wireless -->
+    <a class="cert-card" href="certificates/cert-ccna-srwe.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="li-hint">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        Open PDF
+      </span>
+      <img src="certificates/badge-ccna-srwe.png" alt="CCNA SRWE Badge" class="cert-preview-img" onerror="this.style.display='none'"/>
+      <div class="cert-issuer issuer-cisco">Cisco Networking Academy</div>
+      <div class="cert-name">CCNA: Switching, Routing &amp; Wireless Essentials</div>
+      <div class="cert-date">Completed: Aug 20, 2026</div>
+      <span class="cert-badge">Verified</span>
+    </a>
+
+    <!-- Cisco — CCNA Intro to Networks -->
+    <a class="cert-card" href="certificates/cert-ccna-itn.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="li-hint">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        Open PDF
+      </span>
+      <img src="certificates/badge-ccna-itn.png" alt="CCNA ITN Badge" class="cert-preview-img" onerror="this.style.display='none'"/>
+      <div class="cert-issuer issuer-cisco">Cisco Networking Academy</div>
+      <div class="cert-name">CCNA: Introduction to Networks</div>
+      <div class="cert-date">Cisco Networking Academy</div>
+      <span class="cert-badge">Verified</span>
+    </a>
+
+    <!-- Cisco — CCNA Enterprise -->
+    <a class="cert-card" href="certificates/cert-ccna-ensa.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="li-hint">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        Open PDF
+      </span>
+      <img src="certificates/badge-ccna-ensa.png" alt="CCNA ENSA Badge" class="cert-preview-img" onerror="this.style.display='none'"/>
+      <div class="cert-issuer issuer-cisco">Cisco Networking Academy</div>
+      <div class="cert-name">CCNA: Enterprise Networking, Security &amp; Automation</div>
+      <div class="cert-date">Cisco Networking Academy</div>
+      <span class="cert-badge">Verified</span>
+    </a>
+
+    <!-- Cisco — Intro to Cybersecurity -->
+    <a class="cert-card" href="certificates/cert-cisco-cybersec.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="li-hint">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        Open PDF
+      </span>
+      <img src="certificates/badge-cybersec.png" alt="Cybersecurity Badge" class="cert-preview-img" onerror="this.style.display='none'"/>
+      <div class="cert-issuer issuer-cisco">Cisco Networking Academy</div>
+      <div class="cert-name">Introduction to Cybersecurity</div>
+      <div class="cert-date">Completed: Aug 24, 2026</div>
+      <span class="cert-badge">Verified</span>
+    </a>
+
+    <!-- Cisco — Intro to IoT -->
+    <a class="cert-card" href="certificates/cert-cisco-iot.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="li-hint">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        Open PDF
+      </span>
+      <img src="certificates/badge-iot.png" alt="IoT Badge" class="cert-preview-img" onerror="this.style.display='none'"/>
+      <div class="cert-issuer issuer-cisco">Cisco Networking Academy</div>
+      <div class="cert-name">Introduction to Internet of Things</div>
+      <div class="cert-date">Completed: Aug 18, 2026</div>
+      <span class="cert-badge">Verified</span>
+    </a>
+
+    <!-- Cisco — IoT & Digital Transformation (same IoT cert) -->
+    <a class="cert-card" href="certificates/cert-cisco-iot.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="li-hint">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        Open PDF
+      </span>
+      <img src="certificates/badge-iot.png" alt="IoT Badge" class="cert-preview-img" onerror="this.style.display='none'"/>
+      <div class="cert-issuer issuer-cisco">Cisco Networking Academy</div>
+      <div class="cert-name">Introduction to IoT and Digital Transformation</div>
+      <div class="cert-date">Completed: Aug 18, 2026</div>
+      <span class="cert-badge">Verified</span>
+    </a>
+
+    <!-- VOIS — Ethical Hacking -->
+    <a class="cert-card" href="certificates/cert-ethical-hacking.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="li-hint">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        Open PDF
+      </span>
+      <div class="cert-preview-placeholder badge-vois">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      </div>
+      <div class="cert-issuer issuer-vois">VOIS · Vodafone Idea Foundation &amp; Edunet</div>
+      <div class="cert-name">Ethical Hacking</div>
+      <div class="cert-date">Issued: Aug 16, 2026 · ID: VFLMS26_167433</div>
+      <span class="cert-badge">Completion</span>
+    </a>
+
+    <!-- VOIS — Intro to Cyber Security -->
+    <a class="cert-card" href="certificates/cert-intro-cybersec.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="li-hint">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        Open PDF
+      </span>
+      <div class="cert-preview-placeholder badge-vois">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      </div>
+      <div class="cert-issuer issuer-vois">VOIS · Vodafone Idea Foundation &amp; Edunet</div>
+      <div class="cert-name">Introduction to Cyber Security</div>
+      <div class="cert-date">Issued: Aug 16, 2026 · ID: VFLMS26_167433</div>
+      <span class="cert-badge">Completion</span>
+    </a>
+
+    <!-- VOIS — Kali Linux -->
+    <a class="cert-card" href="certificates/cert-kali.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="li-hint">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        Open PDF
+      </span>
+      <div class="cert-preview-placeholder badge-vois">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+      </div>
+      <div class="cert-issuer issuer-vois">VOIS · Vodafone Idea Foundation &amp; Edunet</div>
+      <div class="cert-name">Kali Linux Fundamentals</div>
+      <div class="cert-date">Issued: Aug 14, 2026 · ID: VFLMS26_167433</div>
+      <span class="cert-badge">Completion</span>
+    </a>
+
+    <!-- VOIS — Phishing Attacks -->
+    <a class="cert-card" href="certificates/cert-phishing.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="li-hint">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        Open PDF
+      </span>
+      <div class="cert-preview-placeholder badge-vois">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </div>
+      <div class="cert-issuer issuer-vois">VOIS · Vodafone Idea Foundation &amp; Edunet</div>
+      <div class="cert-name">Phishing Attacks</div>
+      <div class="cert-date">Issued: Aug 14, 2026 · ID: VFLMS26_167433</div>
+      <span class="cert-badge">Completion</span>
+    </a>
+
+    <!-- VOIS — Wireshark -->
+    <a class="cert-card" href="certificates/cert-wireshark.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="li-hint">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        Open PDF
+      </span>
+      <div class="cert-preview-placeholder badge-vois">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>
+      </div>
+      <div class="cert-issuer issuer-vois">VOIS · Vodafone Idea Foundation &amp; Edunet</div>
+      <div class="cert-name">Wireshark for Network Monitoring</div>
+      <div class="cert-date">Issued: Aug 15, 2026 · ID: VFLMS26_167433</div>
+      <span class="cert-badge">Completion</span>
+    </a>
+
+    <!-- Nasscom -->
+    <a class="cert-card" href="certificates/cert-nasscom.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="li-hint">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        Open PDF
+      </span>
+      <div class="cert-preview-placeholder badge-nasscom">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      </div>
+      <div class="cert-issuer issuer-nasscom">FutureSkills Prime · Nasscom IT-ITeS SSC</div>
+      <div class="cert-name">FSP Acquiring Data (SCORM - 59022)</div>
+      <div class="cert-date">Issued: Oct 7, 2025</div>
+      <span class="cert-badge">Completion</span>
+    </a>
+
+    <!-- IBM -->
+    <a class="cert-card" href="certificates/cert-ibm-ai.pdf" target="_blank" rel="noopener noreferrer">
+      <span class="li-hint">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        Open PDF
+      </span>
+      <img src="certificates/badge-ibm-ai.png" alt="IBM AI Badge" class="cert-preview-img" onerror="this.style.display='none'"/>
+      <div class="cert-issuer issuer-ibm">IBM SkillsBuild</div>
+      <div class="cert-name">Getting Started with Artificial Intelligence</div>
+      <div class="cert-date">IBM SkillsBuild</div>
+      <span class="cert-badge">Completion</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- BADGES -->
+<section id="badges">
+  <div class="section-label">Digital Badges</div>
+  <div class="divider"></div>
+  <h2 class="section-title">Earned Badges</h2>
+  <p class="section-sub">Verified digital badges from Cisco Networking Academy and IBM SkillsBuild.</p>
+
+  <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.4rem;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="#007aff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    Click any badge to verify on LinkedIn
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1.5rem;">
+
+    <!-- Badge 1: CCNA Enterprise Networking, Security & Automation -->
+    <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer"
+       style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.2rem;background:#fff;border:1px solid rgba(60,60,67,0.12);border-radius:20px;box-shadow:0 1px 4px rgba(0,0,0,0.06);transition:box-shadow 0.2s,transform 0.15s;" onmouseover="this.style.boxShadow='0 8px 28px rgba(0,122,255,0.14)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='0 1px 4px rgba(0,0,0,0.06)';this.style.transform='translateY(0)'">
+      <svg width="130" height="130" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+        <rect width="130" height="130" rx="14" fill="#00BCEB"/>
+        <!-- waves background -->
+        <ellipse cx="65" cy="100" rx="90" ry="55" fill="#0099C6" opacity="0.7"/>
+        <ellipse cx="20" cy="95" rx="70" ry="40" fill="#007BA7" opacity="0.6"/>
+        <ellipse cx="100" cy="110" rx="60" ry="35" fill="#5DD4EF" opacity="0.5"/>
+        <!-- top bar -->
+        <rect x="0" y="0" width="130" height="38" rx="0" fill="none"/>
+        <!-- cisco logo text area -->
+        <text x="65" y="15" font-family="Arial" font-size="9" font-weight="900" fill="white" text-anchor="middle" letter-spacing="3">&#9613;&#9613;&#9613;&#9613;&#9613;&#9613; &#9613;&#9613;&#9613;&#9613;&#9613;&#9613;</text>
+        <text x="38" y="26" font-family="Arial" font-size="13" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1">cisco</text>
+        <text x="92" y="20" font-family="Arial" font-size="9" font-weight="700" fill="white" text-anchor="middle">Networking</text>
+        <text x="92" y="30" font-family="Arial" font-size="9" font-weight="700" fill="white" text-anchor="middle">Academy</text>
+        <!-- verified box -->
+        <rect x="8" y="38" width="60" height="24" rx="4" fill="#002B49"/>
+        <text x="38" y="54" font-family="Arial" font-size="10" font-weight="700" fill="white" text-anchor="middle">Verified</text>
+        <!-- bottom white area -->
+        <rect x="0" y="98" width="130" height="32" rx="0" fill="white" opacity="0.92"/>
+        <text x="65" y="110" font-family="Arial" font-size="7.5" font-weight="600" fill="#1c1c1e" text-anchor="middle">CCNA: Enterprise</text>
+        <text x="65" y="121" font-family="Arial" font-size="7" fill="#1c1c1e" text-anchor="middle">Networking, Security &amp; Auto.</text>
+      </svg>
+      <span style="font-size:0.72rem;font-weight:700;color:#1ba0e1;text-align:center;line-height:1.3;">Cisco Networking Academy</span>
+      <span style="font-size:0.75rem;font-weight:600;color:#1c1c1e;text-align:center;line-height:1.35;">CCNA: Enterprise Networking, Security &amp; Automation</span>
+    </a>
+
+    <!-- Badge 2: CCNA Introduction to Networks -->
+    <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer"
+       style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.2rem;background:#fff;border:1px solid rgba(60,60,67,0.12);border-radius:20px;box-shadow:0 1px 4px rgba(0,0,0,0.06);transition:box-shadow 0.2s,transform 0.15s;" onmouseover="this.style.boxShadow='0 8px 28px rgba(0,122,255,0.14)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='0 1px 4px rgba(0,0,0,0.06)';this.style.transform='translateY(0)'">
+      <svg width="130" height="130" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+        <rect width="130" height="130" rx="14" fill="#00BCEB"/>
+        <ellipse cx="65" cy="100" rx="90" ry="55" fill="#0099C6" opacity="0.7"/>
+        <ellipse cx="20" cy="95" rx="70" ry="40" fill="#007BA7" opacity="0.6"/>
+        <ellipse cx="100" cy="110" rx="60" ry="35" fill="#5DD4EF" opacity="0.5"/>
+        <text x="65" y="15" font-family="Arial" font-size="9" font-weight="900" fill="white" text-anchor="middle" letter-spacing="3">&#9613;&#9613;&#9613;&#9613;&#9613;&#9613; &#9613;&#9613;&#9613;&#9613;&#9613;&#9613;</text>
+        <text x="38" y="26" font-family="Arial" font-size="13" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1">cisco</text>
+        <text x="92" y="20" font-family="Arial" font-size="9" font-weight="700" fill="white" text-anchor="middle">Networking</text>
+        <text x="92" y="30" font-family="Arial" font-size="9" font-weight="700" fill="white" text-anchor="middle">Academy</text>
+        <rect x="8" y="38" width="60" height="24" rx="4" fill="#002B49"/>
+        <text x="38" y="54" font-family="Arial" font-size="10" font-weight="700" fill="white" text-anchor="middle">Verified</text>
+        <rect x="0" y="98" width="130" height="32" rx="0" fill="white" opacity="0.92"/>
+        <text x="65" y="110" font-family="Arial" font-size="7.5" font-weight="600" fill="#1c1c1e" text-anchor="middle">CCNA: Introduction</text>
+        <text x="65" y="121" font-family="Arial" font-size="7.5" fill="#1c1c1e" text-anchor="middle">to Networks</text>
+      </svg>
+      <span style="font-size:0.72rem;font-weight:700;color:#1ba0e1;text-align:center;line-height:1.3;">Cisco Networking Academy</span>
+      <span style="font-size:0.75rem;font-weight:600;color:#1c1c1e;text-align:center;line-height:1.35;">CCNA: Introduction to Networks</span>
+    </a>
+
+    <!-- Badge 3: CCNA Switching Routing Wireless -->
+    <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer"
+       style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.2rem;background:#fff;border:1px solid rgba(60,60,67,0.12);border-radius:20px;box-shadow:0 1px 4px rgba(0,0,0,0.06);transition:box-shadow 0.2s,transform 0.15s;" onmouseover="this.style.boxShadow='0 8px 28px rgba(0,122,255,0.14)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='0 1px 4px rgba(0,0,0,0.06)';this.style.transform='translateY(0)'">
+      <svg width="130" height="130" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+        <rect width="130" height="130" rx="14" fill="#00BCEB"/>
+        <ellipse cx="65" cy="100" rx="90" ry="55" fill="#0099C6" opacity="0.7"/>
+        <ellipse cx="20" cy="95" rx="70" ry="40" fill="#007BA7" opacity="0.6"/>
+        <ellipse cx="100" cy="110" rx="60" ry="35" fill="#5DD4EF" opacity="0.5"/>
+        <text x="65" y="15" font-family="Arial" font-size="9" font-weight="900" fill="white" text-anchor="middle" letter-spacing="3">&#9613;&#9613;&#9613;&#9613;&#9613;&#9613; &#9613;&#9613;&#9613;&#9613;&#9613;&#9613;</text>
+        <text x="38" y="26" font-family="Arial" font-size="13" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1">cisco</text>
+        <text x="92" y="20" font-family="Arial" font-size="9" font-weight="700" fill="white" text-anchor="middle">Networking</text>
+        <text x="92" y="30" font-family="Arial" font-size="9" font-weight="700" fill="white" text-anchor="middle">Academy</text>
+        <rect x="8" y="38" width="60" height="24" rx="4" fill="#002B49"/>
+        <text x="38" y="54" font-family="Arial" font-size="10" font-weight="700" fill="white" text-anchor="middle">Verified</text>
+        <rect x="0" y="98" width="130" height="32" rx="0" fill="white" opacity="0.92"/>
+        <text x="65" y="108" font-family="Arial" font-size="7.5" font-weight="600" fill="#1c1c1e" text-anchor="middle">CCNA: Switching,</text>
+        <text x="65" y="118" font-family="Arial" font-size="7" fill="#1c1c1e" text-anchor="middle">Routing &amp; Wireless Essentials</text>
+      </svg>
+      <span style="font-size:0.72rem;font-weight:700;color:#1ba0e1;text-align:center;line-height:1.3;">Cisco Networking Academy</span>
+      <span style="font-size:0.75rem;font-weight:600;color:#1c1c1e;text-align:center;line-height:1.35;">CCNA: Switching, Routing &amp; Wireless Essentials</span>
+    </a>
+
+    <!-- Badge 4: Introduction to Cybersecurity (green) -->
+    <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer"
+       style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.2rem;background:#fff;border:1px solid rgba(60,60,67,0.12);border-radius:20px;box-shadow:0 1px 4px rgba(0,0,0,0.06);transition:box-shadow 0.2s,transform 0.15s;" onmouseover="this.style.boxShadow='0 8px 28px rgba(0,122,255,0.14)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='0 1px 4px rgba(0,0,0,0.06)';this.style.transform='translateY(0)'">
+      <svg width="130" height="130" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+        <rect width="130" height="130" rx="14" fill="#5DA544"/>
+        <ellipse cx="65" cy="105" rx="95" ry="50" fill="#4A8A34" opacity="0.7"/>
+        <ellipse cx="15" cy="100" rx="75" ry="38" fill="#3A7025" opacity="0.6"/>
+        <ellipse cx="105" cy="115" rx="65" ry="32" fill="#7ABF5E" opacity="0.5"/>
+        <text x="65" y="15" font-family="Arial" font-size="9" font-weight="900" fill="white" text-anchor="middle" letter-spacing="3">&#9613;&#9613;&#9613;&#9613;&#9613;&#9613; &#9613;&#9613;&#9613;&#9613;&#9613;&#9613;</text>
+        <text x="38" y="26" font-family="Arial" font-size="13" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1">cisco</text>
+        <text x="92" y="20" font-family="Arial" font-size="9" font-weight="700" fill="white" text-anchor="middle">Networking</text>
+        <text x="92" y="30" font-family="Arial" font-size="9" font-weight="700" fill="white" text-anchor="middle">Academy</text>
+        <rect x="8" y="38" width="60" height="24" rx="4" fill="#002B49"/>
+        <text x="38" y="54" font-family="Arial" font-size="10" font-weight="700" fill="white" text-anchor="middle">Verified</text>
+        <rect x="0" y="98" width="130" height="32" rx="0" fill="white" opacity="0.92"/>
+        <text x="65" y="110" font-family="Arial" font-size="7.5" font-weight="600" fill="#1c1c1e" text-anchor="middle">Introduction to</text>
+        <text x="65" y="121" font-family="Arial" font-size="7.5" fill="#1c1c1e" text-anchor="middle">Cybersecurity</text>
+      </svg>
+      <span style="font-size:0.72rem;font-weight:700;color:#1ba0e1;text-align:center;line-height:1.3;">Cisco Networking Academy</span>
+      <span style="font-size:0.75rem;font-weight:600;color:#1c1c1e;text-align:center;line-height:1.35;">Introduction to Cybersecurity</span>
+    </a>
+
+    <!-- Badge 5: Introduction to Internet of Things (green) -->
+    <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer"
+       style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.2rem;background:#fff;border:1px solid rgba(60,60,67,0.12);border-radius:20px;box-shadow:0 1px 4px rgba(0,0,0,0.06);transition:box-shadow 0.2s,transform 0.15s;" onmouseover="this.style.boxShadow='0 8px 28px rgba(0,122,255,0.14)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='0 1px 4px rgba(0,0,0,0.06)';this.style.transform='translateY(0)'">
+      <svg width="130" height="130" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+        <rect width="130" height="130" rx="14" fill="#5DA544"/>
+        <ellipse cx="65" cy="105" rx="95" ry="50" fill="#4A8A34" opacity="0.7"/>
+        <ellipse cx="15" cy="100" rx="75" ry="38" fill="#3A7025" opacity="0.6"/>
+        <ellipse cx="105" cy="115" rx="65" ry="32" fill="#7ABF5E" opacity="0.5"/>
+        <text x="65" y="15" font-family="Arial" font-size="9" font-weight="900" fill="white" text-anchor="middle" letter-spacing="3">&#9613;&#9613;&#9613;&#9613;&#9613;&#9613; &#9613;&#9613;&#9613;&#9613;&#9613;&#9613;</text>
+        <text x="38" y="26" font-family="Arial" font-size="13" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1">cisco</text>
+        <text x="92" y="20" font-family="Arial" font-size="9" font-weight="700" fill="white" text-anchor="middle">Networking</text>
+        <text x="92" y="30" font-family="Arial" font-size="9" font-weight="700" fill="white" text-anchor="middle">Academy</text>
+        <rect x="8" y="38" width="60" height="24" rx="4" fill="#002B49"/>
+        <text x="38" y="54" font-family="Arial" font-size="10" font-weight="700" fill="white" text-anchor="middle">Verified</text>
+        <rect x="0" y="98" width="130" height="32" rx="0" fill="white" opacity="0.92"/>
+        <text x="65" y="110" font-family="Arial" font-size="7.5" font-weight="600" fill="#1c1c1e" text-anchor="middle">Introduction to</text>
+        <text x="65" y="121" font-family="Arial" font-size="7.5" fill="#1c1c1e" text-anchor="middle">Internet of Things</text>
+      </svg>
+      <span style="font-size:0.72rem;font-weight:700;color:#1ba0e1;text-align:center;line-height:1.3;">Cisco Networking Academy</span>
+      <span style="font-size:0.75rem;font-weight:600;color:#1c1c1e;text-align:center;line-height:1.35;">Introduction to Internet of Things</span>
+    </a>
+
+    <!-- Badge 6: IBM Getting Started with AI -->
+    <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" rel="noopener noreferrer"
+       style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.2rem;background:#fff;border:1px solid rgba(60,60,67,0.12);border-radius:20px;box-shadow:0 1px 4px rgba(0,0,0,0.06);transition:box-shadow 0.2s,transform 0.15s;" onmouseover="this.style.boxShadow='0 8px 28px rgba(0,122,255,0.14)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='0 1px 4px rgba(0,0,0,0.06)';this.style.transform='translateY(0)'">
+      <svg width="130" height="130" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+        <!-- IBM teal badge matching exact design -->
+        <rect width="130" height="130" rx="14" fill="#66C2BF"/>
+        <!-- bottom teal blocks -->
+        <rect x="0" y="88" width="130" height="20" rx="0" fill="#3DA099"/>
+        <rect x="0" y="108" width="130" height="22" rx="0" fill="#1A6B67"/>
+        <!-- bottom left brain icon area -->
+        <rect x="0" y="88" width="42" height="42" rx="0" fill="#1A6B67"/>
+        <!-- brain network icon (simplified) -->
+        <circle cx="12" cy="112" r="3" fill="none" stroke="white" stroke-width="1.2"/>
+        <circle cx="22" cy="106" r="3" fill="none" stroke="white" stroke-width="1.2"/>
+        <circle cx="32" cy="114" r="3" fill="none" stroke="white" stroke-width="1.2"/>
+        <circle cx="22" cy="120" r="3" fill="none" stroke="white" stroke-width="1.2"/>
+        <line x1="12" y1="112" x2="22" y2="106" stroke="white" stroke-width="1" opacity="0.8"/>
+        <line x1="22" y1="106" x2="32" y2="114" stroke="white" stroke-width="1" opacity="0.8"/>
+        <line x1="12" y1="112" x2="22" y2="120" stroke="white" stroke-width="1" opacity="0.8"/>
+        <line x1="32" y1="114" x2="22" y2="120" stroke="white" stroke-width="1" opacity="0.8"/>
+        <line x1="22" y1="106" x2="22" y2="120" stroke="white" stroke-width="1" opacity="0.6"/>
+        <!-- IBM logo bottom right -->
+        <text x="108" y="126" font-family="Arial" font-size="11" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1">IBM</text>
+        <!-- Main text -->
+        <text x="65" y="30" font-family="Arial" font-size="12" font-weight="800" fill="#1A2E2E" text-anchor="middle">Getting Started</text>
+        <text x="65" y="45" font-family="Arial" font-size="12" font-weight="800" fill="#1A2E2E" text-anchor="middle">with Artificial</text>
+        <text x="65" y="60" font-family="Arial" font-size="12" font-weight="800" fill="#1A2E2E" text-anchor="middle">Intelligence</text>
+        <!-- IBM SkillsBuild label -->
+        <text x="20" y="78" font-family="Arial" font-size="8" font-weight="400" fill="#1A2E2E">IBM</text>
+        <text x="33" y="78" font-family="Arial" font-size="8" font-weight="700" fill="#1A2E2E">SkillsBuild</text>
+      </svg>
+      <span style="font-size:0.72rem;font-weight:700;color:#007aff;text-align:center;line-height:1.3;">IBM SkillsBuild</span>
+      <span style="font-size:0.75rem;font-weight:600;color:#1c1c1e;text-align:center;line-height:1.35;">Getting Started with Artificial Intelligence</span>
+    </a>
+
+  </div>
+</section>
+
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Work</div>
+  <div class="divider"></div>
+  <h2 class="section-title">Projects</h2>
+  <p class="section-sub">Things I have built and shipped.</p>
+
+  <div class="project-card">
+    <div class="project-top">
+      <div>
+        <div class="project-icon">&#127942;</div>
+      </div>
+    </div>
+    <div class="project-name">The AI Sports Match Predictor Agent</div>
+    <div class="project-desc">
+      An intelligent agent that predicts sports match outcomes using AI. Built in collaboration with IBM Bob — I provided the prompts and direction, and Bob generated the core project, with final refinements and personalisation applied by me.
+    </div>
+    <div>
+      <span class="tech-tag">IBM Bob</span>
+      <span class="tech-tag">Artificial Intelligence</span>
+      <span class="tech-tag">AI Agent</span>
+      <span class="tech-tag">Sports Analytics</span>
+    </div>
+    <div style="margin-top:1.2rem;">
+      <a href="project.html" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.5rem 1.1rem;background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);border-radius:6px;color:#3fb950;font-size:0.85rem;font-weight:600;text-decoration:none;">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1.75 2.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.19l2.72-2.72a.75.75 0 01.53-.22h4.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25H1.75zM0 2.75C0 1.784.784 1 1.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0112.25 12h-4.19l-3.28 3.28a.75.75 0 01-1.28-.53V12H1.75A1.75 1.75 0 010 10.25v-7.5z"/></svg>
+        View Project Details &amp; Code
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <div class="divider"></div>
+  <h2 class="section-title">Contact</h2>
+  <p class="section-sub">Feel free to reach out — I am open to opportunities, collaborations, and conversations.</p>
+
+  <div class="contact-row">
+    <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324" target="_blank" rel="noopener noreferrer" class="contact-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn — Mohan Krishna Mudunuri
+    </a>
+    <a href="mailto:mkmudunuri07@gmail.com" class="contact-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      mkmudunuri07@gmail.com
+    </a>
+    <div class="contact-item" style="cursor:default;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      Vijayawada, Andhra Pradesh, India
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Mudunuri Mohan Krishna · All rights reserved.</p>
+uy</footer>
+
+</body>
+</html>
