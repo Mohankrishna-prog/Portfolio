@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — Mudunuri Mohan Krishna</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 11pt;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.5;
+    }
+    .page {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2.2rem 2.5rem;
+    }
+
+    /* ── HEADER ── */
+    .header { border-bottom: 2px solid #1a3a6b; padding-bottom: 0.8rem; margin-bottom: 1rem; }
+    .header h1 { font-size: 22pt; font-weight: 800; color: #1a3a6b; letter-spacing: -0.5px; }
+    .header .subtitle { font-size: 10.5pt; color: #444; margin-top: 0.15rem; font-weight: 500; }
+    .contact-bar {
+      display: flex; flex-wrap: wrap; gap: 0.3rem 1.4rem;
+      margin-top: 0.5rem; font-size: 9.5pt; color: #333;
+    }
+    .contact-bar a { color: #1a5dbf; text-decoration: none; }
+    .contact-bar span { display: inline-flex; align-items: center; gap: 0.3rem; }
+
+    /* ── SECTIONS ── */
+    .section { margin-bottom: 1.2rem; }
+    .section-title {
+      font-size: 10.5pt; font-weight: 800; color: #1a3a6b;
+      text-transform: uppercase; letter-spacing: 1.2px;
+      border-bottom: 1px solid #c8d8f0;
+      padding-bottom: 0.2rem; margin-bottom: 0.6rem;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-row { display: flex; justify-content: space-between; align-items: baseline; }
+    .edu-school { font-weight: 700; font-size: 10.5pt; }
+    .edu-degree { font-size: 10pt; color: #333; }
+    .edu-year { font-size: 9.5pt; color: #666; white-space: nowrap; }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: 130px 1fr; gap: 0.3rem 0.6rem; font-size: 10pt; }
+    .skill-cat { font-weight: 700; color: #1a3a6b; }
+    .skill-list { color: #333; }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+    .cert-table th {
+      background: #f0f4fb; color: #1a3a6b; font-weight: 700;
+      text-align: left; padding: 0.3rem 0.5rem;
+      border-bottom: 1px solid #c8d8f0;
+    }
+    .cert-table td { padding: 0.28rem 0.5rem; border-bottom: 1px solid #eef0f4; color: #222; }
+    .cert-table tr:last-child td { border-bottom: none; }
+    .issuer-tag {
+      display: inline-block; padding: 0.1rem 0.45rem;
+      border-radius: 4px; font-size: 8.5pt; font-weight: 700;
+    }
+    .tag-cisco   { background: #e0f0fb; color: #1a6ea8; }
+    .tag-vois    { background: #fde8ec; color: #c0001a; }
+    .tag-nasscom { background: #fff3e0; color: #a85000; }
+    .tag-ibm     { background: #e8f0fe; color: #0050a0; }
+
+    /* ── PROJECT ── */
+    .project-header { display: flex; justify-content: space-between; align-items: baseline; }
+    .project-name { font-weight: 700; font-size: 10.5pt; color: #1a3a6b; }
+    .project-type { font-size: 9pt; color: #888; }
+    .project-desc { font-size: 10pt; color: #333; margin: 0.2rem 0 0.35rem; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.3rem; }
+    .tag {
+      background: #eef3fb; color: #1a5dbf;
+      border: 1px solid #c8d8f0; border-radius: 4px;
+      padding: 0.08rem 0.45rem; font-size: 8.5pt; font-weight: 600;
+    }
+    ul.bullets { padding-left: 1.2rem; margin-top: 0.3rem; }
+    ul.bullets li { font-size: 10pt; color: #333; margin-bottom: 0.15rem; }
+
+    /* ── PRINT ── */
+    @media print {
+      body { font-size: 10.5pt; }
+      .page { padding: 1.2rem 1.5rem; }
+      .no-print { display: none; }
+      a { color: inherit; text-decoration: none; }
+    }
+
+    /* ── PRINT BUTTON ── */
+    .print-bar {
+      text-align: center; padding: 1rem; background: #f0f4fb;
+      border-bottom: 1px solid #c8d8f0; font-size: 10pt;
+    }
+    .print-btn {
+      display: inline-block; padding: 0.5rem 1.4rem;
+      background: #1a3a6b; color: #fff; border: none;
+      border-radius: 6px; font-size: 10pt; font-weight: 600;
+      cursor: pointer; text-decoration: none; margin-left: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="print-bar no-print">
+  <span>Print or save as PDF:</span>
+  <button class="print-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Mudunuri Mohan Krishna</h1>
+    <div class="subtitle">Cybersecurity &amp; Networking Professional &nbsp;·&nbsp; AI Enthusiast &nbsp;·&nbsp; B.Tech Computer Science</div>
+    <div class="contact-bar">
+      <span>📧 <a href="mailto:mkmudunuri07@gmail.com">mkmudunuri07@gmail.com</a></span>
+      <span>📍 Vijayawada, Andhra Pradesh, India</span>
+      <span>🔗 <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324" target="_blank">linkedin.com/in/mohan-krishna-mudunuri</a></span>
+      <span>💻 <a href="https://github.com/Mohankrishna-prog" target="_blank">github.com/Mohankrishna-prog</a></span>
+      <span>🌐 <a href="https://mohankrishna-prog.github.io/Portfolio" target="_blank">mohankrishna-prog.github.io/Portfolio</a></span>
+    </div>
+  </div>
+
+  <!-- OBJECTIVE -->
+  <div class="section">
+    <div class="section-title">Objective</div>
+    <p style="font-size:10pt;color:#333;">
+      Motivated B.Tech Computer Science student with strong foundations in cybersecurity, networking, and AI-driven development.
+      Holding multiple industry certifications from Cisco, IBM, VOIS, and Nasscom. Passionate about building intelligent systems
+      and contributing to digital security and transformation initiatives. Seeking internship and entry-level opportunities
+      in cybersecurity, networking, or AI development.
+    </p>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="section-title">Education</div>
+    <div class="edu-row">
+      <div>
+        <div class="edu-school">Vikas College of Engineering and Technology</div>
+        <div class="edu-degree">Bachelor of Technology (B.Tech) — Computer Science &amp; Engineering</div>
+      </div>
+      <div class="edu-year">2024 – 2028</div>
+    </div>
+    <div style="font-size:9.5pt;color:#666;margin-top:0.1rem;">Vijayawada, Andhra Pradesh, India</div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-cat">Networking</div>
+      <div class="skill-list">CCNA (Routing, Switching, Wireless, Enterprise), TCP/IP, VLANs, Subnetting, Network Automation</div>
+
+      <div class="skill-cat">Cybersecurity</div>
+      <div class="skill-list">Ethical Hacking, Phishing Attack Analysis, Kali Linux, Wireshark, Network Monitoring, Intro to Cybersecurity</div>
+
+      <div class="skill-cat">AI / ML</div>
+      <div class="skill-list">LLM Integration (Groq API, Qwen, Llama), RAG Architecture, Multi-Agent Systems, IBM watsonx / SkillsBuild AI</div>
+
+      <div class="skill-cat">Programming</div>
+      <div class="skill-list">Python, FastAPI, Pydantic, REST API Design, Uvicorn, Scikit-learn</div>
+
+      <div class="skill-cat">Tools &amp; Platforms</div>
+      <div class="skill-list">IBM Bob, GitHub, Git, PowerShell, Packet Tracer, VS Code</div>
+
+      <div class="skill-cat">IoT</div>
+      <div class="skill-list">Introduction to IoT, IoT &amp; Digital Transformation concepts</div>
+    </div>
+  </div>
+
+  <!-- PROJECT -->
+  <div class="section">
+    <div class="section-title">Projects</div>
+
+    <div class="project-header">
+      <div class="project-name">The AI Sports Match Predictor Agent</div>
+      <div class="project-type">Featured Project · IBM Bob &amp; FastAPI</div>
+    </div>
+    <div class="project-desc">
+      A multi-agent AI system that analyses historical sports match data and generates strategic coaching recommendations
+      using a sequential 4-agent pipeline powered by Groq LLM (Qwen 3.8-27B) and RAG retrieval.
+    </div>
+    <ul class="bullets">
+      <li>Designed and implemented a <strong>4-agent sequential pipeline</strong>: Match Analysis → Opponent Strategy → Strategy Recommendation → Insight Explanation</li>
+      <li>Built a <strong>FastAPI backend</strong> with 5 REST endpoints, CORS middleware, and a live HTML dashboard UI</li>
+      <li>Integrated <strong>Groq API</strong> with Qwen 3.8-27B as primary reasoning model and Llama Prompt Guard for safety filtering</li>
+      <li>Implemented <strong>RAG (Retrieval-Augmented Generation)</strong> with a shared retriever instance across all agents</li>
+      <li>Delivered plain-language coaching insights from complex AI analysis using the Insight Explanation Agent</li>
+    </ul>
+    <div class="tag-row">
+      <span class="tag">IBM Bob</span>
+      <span class="tag">Python</span>
+      <span class="tag">FastAPI</span>
+      <span class="tag">Groq API</span>
+      <span class="tag">Qwen 3.8-27B</span>
+      <span class="tag">RAG</span>
+      <span class="tag">Scikit-learn</span>
+      <span class="tag">Llama Prompt Guard</span>
+      <span class="tag">Uvicorn</span>
+      <span class="tag">Pydantic</span>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="section">
+    <div class="section-title">Certifications</div>
+    <table class="cert-table">
+      <thead>
+        <tr>
+          <th>Certification</th>
+          <th>Issuer</th>
+          <th>Date / ID</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CCNA: Switching, Routing &amp; Wireless Essentials</td>
+          <td><span class="issuer-tag tag-cisco">Cisco</span></td>
+          <td>Aug 2026</td>
+          <td>Verified</td>
+        </tr>
+        <tr>
+          <td>CCNA: Introduction to Networks</td>
+          <td><span class="issuer-tag tag-cisco">Cisco</span></td>
+          <td>—</td>
+          <td>Verified</td>
+        </tr>
+        <tr>
+          <td>CCNA: Enterprise Networking, Security &amp; Automation</td>
+          <td><span class="issuer-tag tag-cisco">Cisco</span></td>
+          <td>—</td>
+          <td>Verified</td>
+        </tr>
+        <tr>
+          <td>Introduction to Cybersecurity</td>
+          <td><span class="issuer-tag tag-cisco">Cisco</span></td>
+          <td>Aug 2026</td>
+          <td>Verified</td>
+        </tr>
+        <tr>
+          <td>Introduction to Internet of Things</td>
+          <td><span class="issuer-tag tag-cisco">Cisco</span></td>
+          <td>Aug 2026</td>
+          <td>Verified</td>
+        </tr>
+        <tr>
+          <td>Introduction to IoT and Digital Transformation</td>
+          <td><span class="issuer-tag tag-cisco">Cisco</span></td>
+          <td>Aug 2026</td>
+          <td>Verified</td>
+        </tr>
+        <tr>
+          <td>Ethical Hacking</td>
+          <td><span class="issuer-tag tag-vois">VOIS · Vodafone &amp; Edunet</span></td>
+          <td>Aug 16, 2026 · ID: VFLMS26_167433</td>
+          <td>Completion</td>
+        </tr>
+        <tr>
+          <td>Introduction to Cyber Security</td>
+          <td><span class="issuer-tag tag-vois">VOIS · Vodafone &amp; Edunet</span></td>
+          <td>Aug 16, 2026 · ID: VFLMS26_167433</td>
+          <td>Completion</td>
+        </tr>
+        <tr>
+          <td>Kali Linux Fundamentals</td>
+          <td><span class="issuer-tag tag-vois">VOIS · Vodafone &amp; Edunet</span></td>
+          <td>Aug 14, 2026 · ID: VFLMS26_167433</td>
+          <td>Completion</td>
+        </tr>
+        <tr>
+          <td>Phishing Attacks</td>
+          <td><span class="issuer-tag tag-vois">VOIS · Vodafone &amp; Edunet</span></td>
+          <td>Aug 14, 2026 · ID: VFLMS26_167433</td>
+          <td>Completion</td>
+        </tr>
+        <tr>
+          <td>Wireshark for Network Monitoring</td>
+          <td><span class="issuer-tag tag-vois">VOIS · Vodafone &amp; Edunet</span></td>
+          <td>Aug 15, 2026 · ID: VFLMS26_167433</td>
+          <td>Completion</td>
+        </tr>
+        <tr>
+          <td>FSP Acquiring Data (SCORM - 59022)</td>
+          <td><span class="issuer-tag tag-nasscom">Nasscom FutureSkills</span></td>
+          <td>Oct 7, 2025</td>
+          <td>Completion</td>
+        </tr>
+        <tr>
+          <td>Getting Started with Artificial Intelligence</td>
+          <td><span class="issuer-tag tag-ibm">IBM SkillsBuild</span></td>
+          <td>—</td>
+          <td>Completion</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DIGITAL BADGES -->
+  <div class="section">
+    <div class="section-title">Digital Badges</div>
+    <p style="font-size:10pt;color:#333;">
+      Verified digital badges earned from <strong>Cisco Networking Academy</strong> (CCNA SRWE, CCNA ITN, CCNA ENSA, Intro to Cybersecurity, Intro to IoT)
+      and <strong>IBM SkillsBuild</strong> (Getting Started with Artificial Intelligence).
+      All badges verifiable on LinkedIn:
+      <a href="https://www.linkedin.com/in/mohan-krishna-mudunuri-40a387324/details/certifications/" target="_blank" style="color:#1a5dbf;">linkedin.com/in/mohan-krishna-mudunuri</a>
+    </p>
+  </div>
+
+  <!-- SOFT SKILLS / ADDITIONAL -->
+  <div class="section">
+    <div class="section-title">Additional Information</div>
+    <div class="skills-grid">
+      <div class="skill-cat">Languages</div>
+      <div class="skill-list">English (Professional), Telugu (Native)</div>
+      <div class="skill-cat">Interests</div>
+      <div class="skill-list">Cybersecurity Research, AI Agent Development, Network Architecture, Digital Transformation</div>
+      <div class="skill-cat">Portfolio</div>
+      <div class="skill-list"><a href="https://mohankrishna-prog.github.io/Portfolio" style="color:#1a5dbf;">mohankrishna-prog.github.io/Portfolio</a></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
